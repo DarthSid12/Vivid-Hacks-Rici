@@ -311,11 +311,17 @@ correctCountry = random.choice(countryMaps)
 print(correctCountry['map'])
 guessed = False
 while i<totalGuesses:
-    guess = input("")
+    i+=1
+    guess = input("").lower()
     
-    if guess.lower() == correctCountry['name']:
+    if guess == correctCountry['name']:
         print("Congratulations, you got it.")
         guessed = True
+        break
     elif guess in countriesNameLower:#Check if guess is a country
-        print(f"Close, but wrong You have ${totalGuesses - i} guesses left")
+        print(f"Close, but wrong. You have {totalGuesses - i} guesses left")
+    else:
+        print(f"Invalid country. You have {totalGuesses - i} guesses left")
     
+if not guessed :
+    print("Better luck next time! The country was",correctCountry['name'].title())
